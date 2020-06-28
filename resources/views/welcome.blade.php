@@ -16,8 +16,11 @@
                 </h1>
 
                 <div class="links">
-                    <a href="/news.php" style="margin-right: 20px;">News</a>
-                    <a href="/about_us.php">About us</a>
+                    <a href="/news" style="margin-right: 20px;">News</a>
+                    <a href="/categories" style="margin-right: 20px;">Categories</a>
+                    <a href="/user/login" style="margin-right: 20px;">Log in</a>
+                    <a href="/news/create" style="margin-right: 20px;">Create news</a>
+                    <a href="/about_us">About us</a>
                 </div>
             </div>
         </div>

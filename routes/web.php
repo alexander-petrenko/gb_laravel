@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,14 +14,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function() {
-    return view('welcome');
-});
+Route::get('/', 'NewsController@index');
 
-Route::get('/news.php', function() {
-    return view('news');
-});
+Route::get('/news', 'NewsController@news');
 
-Route::get('/about_us.php', function() {
-    return view('about_us');
-});
+Route::get('/news/{id}', 'NewsController@singleNews')
+    ->where('id', '\d+');
+
+Route::get('/news/{id}/edit', 'NewsController@newsEdit')
+    ->where('id', '\d+');
+
+Route::get('/news/create', 'NewsController@newsCreate');
+
+Route::get('/categories', 'CategoryController@index');
+
+Route::get('/categories/{id}', 'NewsController@newsByCategory')
+    ->where('id', '\d+');
+
+Route::get('/user/login', 'UserController@login');
+
+Route::get('/about_us', 'NewsController@aboutUs');
