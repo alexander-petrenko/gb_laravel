@@ -1,0 +1,59 @@
+body>div {
+    display: grid;
+    min-height: 100vh;
+    grid-template-rows: 1fr minmax(100px, auto);
+}
+
+body>.container>.content {
+    margin-top: 100px;
+}
+
+header.fixed-top {
+    height: 40px;
+    background-color: #deedfd;
+    right: 15%;
+    left: 15%;
+    margin-bottom: 20px;
+}
+
+h1 {
+    margin-bottom: 25px;
+}
+
+.card {
+    margin-bottom: 15px;
+}
+
+.news .news_item .card-text {
+    height: 50px;
+    overflow: hidden;
+}
+
+footer {
+    background: rgb(236, 231, 231);
+    padding: 25px;
+    margin-top: 50px;
+}
+
+footer .social_icons {
+    display: flex;
+    justify-content: center;
+}
+
+footer .social_icons div {
+    padding: 5px 20px;
+}
+
+footer .footer_links {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0 30px;
+}
+
+footer .footer_links>div {
+    padding: 0 15px;
+}
+
+footer .copyright {
+    text-align: center;
+}

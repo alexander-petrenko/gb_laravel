@@ -1,28 +1,28 @@
-<!DOCTYPE html>
-<html lang="ru">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Welcome</title>
+@section('title')
+    @parent Welcome
+@endsection
 
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            
-            <div class="content">
-                <h1>
-                    Welcome page
-                </h1>
+@section('home_active')
+    active
+@endsection
 
-                <div class="links">
-                    <a href="/news" style="margin-right: 20px;">News</a>
-                    <a href="/categories" style="margin-right: 20px;">Categories</a>
-                    <a href="/user/login" style="margin-right: 20px;">Log in</a>
-                    <a href="/news/create" style="margin-right: 20px;">Create news</a>
-                    <a href="/about_us">About us</a>
-                </div>
-            </div>
+@section('content')
+    <div class="content">
+
+        <div class="jumbotron">
+            <h1 class="display-4">Welcome page</h1>
+            <p class="lead">Qui, reiciendis ad nemo rem, sunt tempore quis ipsam soluta veritatis odio ut debitis est reprehenderit beatae praesentium atque repellendus eos, vel ex!</p>
+            <hr class="my-4">
+            <p>Eaque unde, repellendus neque beatae adipisci vero molestias.</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="/news" role="button">Check out</a>
+            </p>
         </div>
-    </body>
-</html>
+
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam vel non dignissimos distinctio repellendus, aliquid similique provident voluptatibus beatae excepturi! Esse tenetur enim quam voluptate repudiandae quis debitis quod, amet sed ab nam fugiat possimus asperiores assumenda et cupiditate magni, eligendi quibusdam. Aliquid, voluptatum quos enim quam ratione iure esse voluptatem maiores dolorem porro expedita perspiciatis laboriosam est dolor cumque aut veniam eos aperiam sed totam! Eaque unde, repellendus neque beatae adipisci vero molestias? Qui, reiciendis ad nemo rem, sunt tempore quis ipsam soluta veritatis odio ut debitis est reprehenderit beatae praesentium atque repellendus eos, vel ex. Minus, aperiam pariatur.
+        </p>
+    </div>
+@endsection

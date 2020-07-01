@@ -34,3 +34,7 @@ Route::get('/categories/{id}', 'NewsController@newsByCategory')
 Route::get('/user/login', 'UserController@login');
 
 Route::get('/about_us', 'NewsController@aboutUs');
+
+//Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
