@@ -29,6 +29,10 @@ h1 {
     overflow: hidden;
 }
 
+.requests_item h5 {
+    text-decoration: underline;
+}
+
 footer {
     background: rgb(236, 231, 231);
     padding: 25px;

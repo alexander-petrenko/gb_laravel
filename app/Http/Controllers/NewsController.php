@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\NewsCreateRequest;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -138,14 +139,61 @@ class NewsController extends Controller
 
     public function newsEdit(int $id)
     {
+        $news = $this->news[$id - 1] ?? [];
+        if (!$news) {
+            return abort(404);
+        }
+
         return view('news.news_edit', [
-            'id' => $id
+            'news' => $news
+        ]);
+    }
+
+    public function newsUpdate(int $id)
+    {
+        $title = request()->input('title') ?? '';
+        $content = request()->input('content') ?? '';
+        $category = request()->input('category') ?? '';
+
+        if ($title && $content && $category) {
+            $this->news[$id - 1]['title'] = $title;
+            $this->news[$id - 1]['content'] = $content;
+            $this->news[$id - 1]['category'] = $category;
+
+            $message = 'Updated successfully!';
+        } else {
+            $message = 'No empty fields required';
+        }
+
+        return view('news.news_edit', [
+            'news' => $this->news[$id - 1],
+            'message' => $message
         ]);
     }
 
     public function newsCreate()
     {
         return view('news.news_create');
+    }
+    public function newsAdd(NewsCreateRequest $request)
+    {
+        $request->validated();
+
+        $title = request()->input('title');
+        $description = request()->input('description');
+        $short_description = request()->input('short_description');
+        
+        $str = $title . ',' . $description . ',' . $short_description . PHP_EOL;
+
+        if (file_put_contents(storage_path('app/public/news.txt'), $str, FILE_APPEND)) {
+            $message = 'News has been added successfully!';
+        } else {
+            $message = 'Error';
+        }
+
+        return view('news.news_create', [
+            'message' => $message
+        ]);
     }
 
     public function news()
