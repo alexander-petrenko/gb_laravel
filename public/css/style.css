@@ -24,9 +24,19 @@ h1 {
     margin-bottom: 15px;
 }
 
+.card .card-text {
+    height: 70px;
+    overflow: hidden;
+}
+
 .news .news_item .card-text {
     height: 50px;
     overflow: hidden;
+}
+
+.news_item .news_info {
+    display: flex;
+    justify-content: space-between;
 }
 
 .requests_item h5 {

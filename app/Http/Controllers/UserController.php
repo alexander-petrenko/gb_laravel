@@ -20,10 +20,10 @@ class UserController extends Controller
 
     public function commentAdd(UserCommentRequest $request)
     {
-        $request->validated();
+        $data = $request->validated();
 
-        $name = $request->input('name');
-        $comment = $request->input('comment');
+        $name = $data['name'];
+        $comment = $data['comment'];
 
         $str = $name . ': ' . $comment . ': ' . date('H:i:s Y-m-d') . PHP_EOL;
 
@@ -61,12 +61,12 @@ class UserController extends Controller
 
     public function requestAdd(UserRequestRequest $request)
     {
-        $request->validated();
+        $data = $request->validated();
 
-        $name = $request->input('name');
-        $phone = $request->input('phone');
-        $email = $request->input('email');
-        $user_request = $request->input('request');
+        $name = $data['name'];
+        $phone = $data['phone'];
+        $email = $data['email'];
+        $user_request = $data['request'];
 
         $str = $name . ', ' . $phone . ', ' . $email . ', ' . $user_request . ', ' . date('H:i:s Y-m-d') . PHP_EOL;
 

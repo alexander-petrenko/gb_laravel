@@ -1,10 +1,10 @@
 <div class="col mb-4">
     <div class="card">
-        <img src="{{ $category['url'] }}" class="card-img-top" alt="">
+        <img src="{{ $category->url }}" class="card-img-top" alt="">
         <div class="card-body">
-            <h5 class="card-title">{{ $category['name'] }}</h5>
-            <p class="card-text">{{ $category['description'] }}</p>
+            <h5 class="card-title">{{ $category->name }}</h5>
+            <p class="card-text">{{ $category->description }}</p>
         </div>
-        <a href="/categories/{{ $category['id'] }}" class="btn btn-primary">Go -></a>
+        <a href="/categories/{{ $category->id }}" class="btn btn-primary">Go -></a>
     </div>
 </div>

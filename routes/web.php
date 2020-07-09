@@ -19,12 +19,15 @@ Route::get('/', 'NewsController@index');
 Route::get('/news', 'NewsController@news');
 
 Route::get('/news/{id}', 'NewsController@singleNews')
-    ->where('id', '\d+');
+    ->where('id', '\d+')
+    ->name('singleNews');
 
 Route::get('/news/{id}/edit', 'NewsController@newsEdit')
-    ->where('id', '\d+');
+    ->where('id', '\d+')
+    ->name('newsEdit');
 Route::put('/news/{id}/edit', 'NewsController@newsUpdate')
-    ->where('id', '\d+');
+    ->where('id', '\d+')
+    ->name('newsUpdate');
 
 Route::get('/news/create', 'NewsController@newsCreate');
 Route::post('news/create', 'NewsController@newsAdd');
@@ -32,7 +35,8 @@ Route::post('news/create', 'NewsController@newsAdd');
 Route::get('/categories', 'CategoryController@index');
 
 Route::get('/categories/{id}', 'NewsController@newsByCategory')
-    ->where('id', '\d+');
+    ->where('id', '\d+')
+    ->name('singleCategory');
 
 Route::get('/user/login', 'UserController@login');
 
