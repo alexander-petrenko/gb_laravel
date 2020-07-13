@@ -9,14 +9,18 @@
         <h1>{{ $single_news->title }}</h1>
         <p>{{ $single_news->description }}</p>
         <p>Category: 
-            <a href="{{ route('singleCategory', $single_news->category_id) }}">{{ $single_news->name }}</a>
+            @forelse($single_news->categories as $category)
+                <a href="{{ route('singleCategory', $category->id) }}">{{ $category->name }}</a>, 
+            @empty
+                <p>No news</p>
+            @endforelse
         </p>
         <div>
             <div>Added: {{ $single_news->created_at }}</div>
             <div>Updated: {{ $single_news->updated_at }}</div>
         </div>
         <div>
-            <a href="{{ route('newsEdit', $single_news->news_id) }}">Edit</a>
+            <a href="{{ route('newsEdit', $single_news->id) }}">Edit</a>
         </div>
     </div>
 @endsection

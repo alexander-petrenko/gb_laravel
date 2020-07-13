@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\NewsCreateRequest;
+use App\Models\Category;
 use Illuminate\Http\Request;
-use App\News;
+use App\Models\News;
 
 class NewsController extends Controller
 {
@@ -14,92 +15,80 @@ class NewsController extends Controller
         return view('welcome');
     }
 
-    public function newsEdit(int $id)
+    public function newsEdit(News $news)
     {
-        $news = (new News())->getSingleNews($id);
-
         if (!$news) {
             return abort(404);
         }
 
         return view('news.news_edit', [
-            'news' => $news[0]
+            'news' => $news
         ]);
     }
 
-    public function newsUpdate(int $id)
+    public function newsUpdate(NewsCreateRequest $request, News $news)
     {
-        $title = request()->input('title') ?? '';
-        $content = request()->input('content') ?? '';
-        $category = request()->input('category') ?? '';
+        if ($request->isMethod('post')) {
+            
+            $news->fill($request->validated());
+            $news->save();
 
-        if ($title && $content && $category) {
-            $this->news[$id - 1]['title'] = $title;
-            $this->news[$id - 1]['content'] = $content;
-            $this->news[$id - 1]['category'] = $category;
-
-            $message = 'Updated successfully!';
-        } else {
-            $message = 'No empty fields required';
+            return redirect()->route('newsUpdate', $news);
         }
 
-        return view('news.news_edit', [
-            'news' => $this->news[$id - 1],
-            'message' => $message
+        return view('news.news_create', [
+            'news' => $news,
+            'title' => 'News update',
+            'route' => route('newsUpdate', $news)
         ]);
     }
 
     public function newsCreate()
     {
-        return view('news.news_create');
+        return view('news.news_create', [
+            'title' => 'News Create',
+            'route' => route('newsAdd')
+        ]);
     }
     public function newsAdd(NewsCreateRequest $request)
-    {
-        $data = $request->validated();
+    {   
+        $news = new News();
 
-        $title = $data['title'];
-        $description = $data['description'];
-        $short_description = $data['short_description'];
-        
-        $str = $title . ',' . $description . ',' . $short_description . PHP_EOL;
+        if ($request->isMethod('post')) {
+            
+            $data = $request->validated();
+            $news = News::create($data);
 
-        if (file_put_contents(storage_path('app/public/news.txt'), $str, FILE_APPEND)) {
-            $message = 'News has been added successfully!';
-        } else {
-            $message = 'Error';
+            if ($news) {
+                return redirect()->route('newsCreate');
+            }
+
         }
 
         return view('news.news_create', [
-            'message' => $message
+            'news' => $news,
+            'title' => 'News create',
+            'route' => route('newsCreate')
         ]);
     }
 
     public function news()
     {
-        $news = (new News())->getNews();
+        $news = News::query()->paginate(10);
 
         return view('news.news', [
             'news' => $news
         ]);
     }
 
-    public function singleNews(int $id)
+    public function singleNews(News $news)
     {
-        $news = (new News())->getSingleNews($id);
-
         return view('news.single_news', [
-            'single_news' => $news[0]
+            'single_news' => $news
         ]);
     }
 
-    public function newsByCategory(int $category_id)
-    {
-        $news = (new News())->getNewsByCategory($category_id);
-
-        return view('news.news', [
-            'news' => $news
-        ]);
-    }
+    
 
     public function aboutUs()
     {

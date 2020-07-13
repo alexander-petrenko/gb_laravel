@@ -26,7 +26,7 @@ class NewsCreateRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'min:5', 'max:25'],
             'description' => ['required', 'string', 'max:250'],
-            'short_description' => ['required', 'string', 'max:50']
+            'category' => ['required', 'string', 'min:2', 'max:25']
         ];
     }
 }

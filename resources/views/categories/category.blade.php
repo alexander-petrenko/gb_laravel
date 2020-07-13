@@ -5,6 +5,6 @@
             <h5 class="card-title">{{ $category->name }}</h5>
             <p class="card-text">{{ $category->description }}</p>
         </div>
-        <a href="/categories/{{ $category->id }}" class="btn btn-primary">Go -></a>
+        <a href="{{ route('singleCategory', $category->id) }}" class="btn btn-primary">Go -></a>
     </div>
 </div>

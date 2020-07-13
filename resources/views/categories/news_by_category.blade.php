@@ -11,16 +11,15 @@
 @section('content')
     <div class="content">
         <h1>
-            News page
+            News page - Category: {{ $category->name }}
         </h1>
 
         <div class="news">
-            @forelse($news as $news_item)
-                @include('news.news_item')
+            @forelse($category->news as $news_item)
+                @include('categories.news_by_category_item')
             @empty
                 <p>No news</p>
             @endforelse
         </div>
-        <div>{{ $news->links() }}</div>
     </div>
 @endsection

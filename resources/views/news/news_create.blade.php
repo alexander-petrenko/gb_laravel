@@ -10,23 +10,24 @@
 
 @section('content')
     <div class="content">
-        <h1>Create news</h1>
-        <form method="post" action="/news/create">
+        <h1>{{ $title }}</h1>
+        <form method="post" action="{{ $route }}">
             @csrf
             <div class="form-group">
                 <label for="exampleFormControlInput1">Title</label>
-                <input type="text" name="title" value="{{ old('title') }}" class="form-control" id="exampleFormControlInput1">
+                <input type="text" name="title" value="{{ $news->title }}" class="form-control" id="exampleFormControlInput1">
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Description</label>
-                <textarea class="form-control" name="description" value="{{ old('description') }}" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3">{{ $news->description }}</textarea>
             </div>
             <div class="form-group">
-                <label for="exampleFormControlTextarea2">Short description</label>
-                <textarea class="form-control" name="short_description" value="{{ old('short_description') }}" id="exampleFormControlTextarea2" rows="2"></textarea>
+                <label for="exampleFormControlInput2">Category</label>
+                <input type="text" name="category" value="{{ $news->name }}" class="form-control" id="exampleFormControlInput2">
             </div>
-            <button type="submit" class="btn btn-primary">Create</button>
-            <span>{{ $message ?? NULL }}</span>
+            <button type="submit" class="btn btn-primary">
+                @if $news->id Update @else Create @endif
+            </button>
         </form>
     </div>
 @endsection

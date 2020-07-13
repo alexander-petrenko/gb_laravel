@@ -18,24 +18,22 @@ Route::get('/', 'NewsController@index');
 
 Route::get('/news', 'NewsController@news');
 
-Route::get('/news/{id}', 'NewsController@singleNews')
-    ->where('id', '\d+')
+Route::get('/news/{news}', 'NewsController@singleNews')
     ->name('singleNews');
 
-Route::get('/news/{id}/edit', 'NewsController@newsEdit')
-    ->where('id', '\d+')
+Route::get('/news/{news}/edit', 'NewsController@newsEdit')
     ->name('newsEdit');
-Route::put('/news/{id}/edit', 'NewsController@newsUpdate')
-    ->where('id', '\d+')
+Route::put('/news/{news}/update', 'NewsController@newsUpdate')
     ->name('newsUpdate');
 
-Route::get('/news/create', 'NewsController@newsCreate');
-Route::post('news/create', 'NewsController@newsAdd');
+Route::get('/news/create', 'NewsController@newsCreate')
+    ->name('newsCreate');
+Route::post('news/create', 'NewsController@newsAdd')
+    ->name('newsAdd');
 
 Route::get('/categories', 'CategoryController@index');
 
-Route::get('/categories/{id}', 'NewsController@newsByCategory')
-    ->where('id', '\d+')
+Route::get('/categories/{category}', 'CategoryController@newsByCategory')
     ->name('singleCategory');
 
 Route::get('/user/login', 'UserController@login');
