@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,40 +15,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'NewsController@index');
+Route::get('/', 'HomeController@welcome');
+Route::get('/about_us', 'HomeController@aboutUs');
+
 
 Route::get('/news', 'NewsController@news');
-
 Route::get('/news/{news}', 'NewsController@singleNews')
     ->name('singleNews');
 
-Route::get('/news/{news}/edit', 'NewsController@newsEdit')
-    ->name('newsEdit');
-Route::put('/news/{news}/update', 'NewsController@newsUpdate')
-    ->name('newsUpdate');
 
-Route::get('/news/create', 'NewsController@newsCreate')
-    ->name('newsCreate');
-Route::post('news/create', 'NewsController@newsAdd')
-    ->name('newsAdd');
 
-Route::get('/categories', 'CategoryController@index');
+// Admin routes
+Route::group(['prefix' => 'admin'], function() {
+    Route::resource('/categories', 'Admin\CategoryController');
+    Route::resource('/news', 'Admin\NewsController');
+    Route::resource('/feedback', 'Admin\FeedbackController');
+    Route::resource('/requests', 'Admin\RequestController');
+});
 
-Route::get('/categories/{category}', 'CategoryController@newsByCategory')
-    ->name('singleCategory');
+
+
+
 
 Route::get('/user/login', 'UserController@login');
-
-Route::get('user/comment', 'UserController@comment');
-Route::post('user/comment', 'UserController@commentAdd');
-
-Route::get('/user/feedback', 'UserController@feedback');
-
-Route::get('/user/request', 'UserController@request');
-Route::post('/user/request', 'UserController@requestAdd');
-
-Route::get('/user/requests', 'UserController@requests');
-
-Route::get('/about_us', 'NewsController@aboutUs');
 
 //Auth::routes();

@@ -14,9 +14,11 @@
             Feedback
         </h1>
 
+        <span class="alert-success">{{ $message ?? NULL }}</span>
+        
         <div class="feedback">
-            @forelse($comments as $comment)
-                @include('feedback_item')
+            @forelse($feedback as $feedback_item)
+                @include('feedback.feedback_item')
             @empty
                 <p>No feedback</p>
             @endforelse

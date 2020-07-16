@@ -24,9 +24,8 @@ h1 {
     margin-bottom: 15px;
 }
 
-.card .card-text {
-    height: 70px;
-    overflow: hidden;
+.requests .card-text {
+    margin-bottom: 30px;
 }
 
 .news .news_item .card-text {
@@ -39,7 +38,19 @@ h1 {
     justify-content: space-between;
 }
 
-.requests_item h5 {
+.admin_options {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+form .category_options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.request h5 {
     text-decoration: underline;
 }
 

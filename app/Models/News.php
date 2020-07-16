@@ -10,8 +10,9 @@ class News extends Model
     protected $table = 'news';
     protected $primaryKey = 'id';
 
-    protected $fillable = ['title', 'description', 'slug'];
+    protected $fillable = ['title', 'description'];
 
+    
     public function categories()
     {
         return $this->belongsToMany(Category::class, 'news_category', 'news_id', 'category_id');

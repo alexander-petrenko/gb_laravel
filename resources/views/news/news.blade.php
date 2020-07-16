@@ -14,6 +14,8 @@
             News page
         </h1>
 
+        <span class="alert-success">{{ $message ?? NULL }}</span>
+
         <div class="news">
             @forelse($news as $news_item)
                 @include('news.news_item')

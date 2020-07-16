@@ -10,7 +10,9 @@ class Category extends Model
     protected $table = 'categories';
     protected $primaryKey = 'id';
 
-    protected $fillable = ['title', 'description', 'slug'];
+
+    protected $fillable = ['name', 'description', 'url'];
+
 
     public function news()
     {

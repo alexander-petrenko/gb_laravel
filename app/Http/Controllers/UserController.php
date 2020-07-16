@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserCommentRequest;
-use App\Http\Requests\UserRequestRequest;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -13,7 +11,7 @@ class UserController extends Controller
         return view('login');
     }
 
-    public function comment()
+    /* public function comment()
     {
         return view('comment');
     }
@@ -36,9 +34,9 @@ class UserController extends Controller
         return view('comment', [
             'message' => $message
         ]);
-    }
+    } */
 
-    public function feedback()
+    /* public function feedback()
     {
         $comments = explode("\n", file_get_contents(storage_path('app/public/comments.txt')));
         array_pop($comments);
@@ -104,5 +102,5 @@ class UserController extends Controller
         return view('requests', [
             'requests' => $result
         ]);
-    }
+    } */
 }

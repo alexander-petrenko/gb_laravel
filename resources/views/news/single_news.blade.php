@@ -10,7 +10,7 @@
         <p>{{ $single_news->description }}</p>
         <p>Category: 
             @forelse($single_news->categories as $category)
-                <a href="{{ route('singleCategory', $category->id) }}">{{ $category->name }}</a>, 
+                <a href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a>, 
             @empty
                 <p>No news</p>
             @endforelse
@@ -19,8 +19,17 @@
             <div>Added: {{ $single_news->created_at }}</div>
             <div>Updated: {{ $single_news->updated_at }}</div>
         </div>
-        <div>
-            <a href="{{ route('newsEdit', $single_news->id) }}">Edit</a>
+        <div class="admin_options">
+            <div>
+                <a href="{{ route('news.edit', $single_news) }}" class="btn btn-secondary">Edit</a>
+            </div>
+            <div>
+                <form action="{{ route('news.destroy', $single_news) }}" method="post">
+                    @method('DELETE')
+                    @csrf
+                    <button type="submit" class="btn btn-secondary">Delete</button>
+                </form>
+            </div>
         </div>
     </div>
 @endsection
