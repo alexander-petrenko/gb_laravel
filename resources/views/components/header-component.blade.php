@@ -9,6 +9,12 @@
         <a class="nav-item nav-link @yield('feedback_active')" href="/user/feedback">Feedback</a>
         <a class="nav-item nav-link @yield('request_active')" href="/user/request">Order</a>
         <a class="nav-item nav-link @yield('requests_active')" href="/user/requests">Requests</a>
-        <a class="nav-item nav-link @yield('login_active')" href="/user/login">Log in</a>
+        @if(Auth::check())
+            <a class="nav-item nav-link @yield('login_active')" href="{{ route('account') }}">Account</a>
+            <a class="nav-item nav-link @yield('login_active')" href="{{ route('logout') }}">Log out</a>
+        @else
+            <a class="nav-item nav-link @yield('login_active')" href="{{ route('login') }}">Log in</a>
+            <a class="nav-item nav-link @yield('login_active')" href="{{ route('register') }}">Register</a>
+        @endif
     </nav>
 </header>

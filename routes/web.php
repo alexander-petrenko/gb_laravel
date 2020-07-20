@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\NewsController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,20 +24,29 @@ Route::get('/news', 'NewsController@news');
 Route::get('/news/{news}', 'NewsController@singleNews')
     ->name('singleNews');
 
+Route::group(['middleware' => 'auth'], function() {
 
+    Route::get('/logout', function() {
+        Auth::logout();
+        return redirect('/login');
+    });
 
-// Admin routes
-Route::group(['prefix' => 'admin'], function() {
-    Route::resource('/categories', 'Admin\CategoryController');
-    Route::resource('/news', 'Admin\NewsController');
-    Route::resource('/feedback', 'Admin\FeedbackController');
-    Route::resource('/requests', 'Admin\RequestController');
+    //User
+    Route::get('/account', 'Account\IndexController@index')
+        ->name('account');
+
+    // Admin
+    Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
+        Route::get('/', 'Admin\IndexController@index')
+            ->name('admin');
+        Route::resource('/categories', 'Admin\CategoryController');
+        Route::resource('/news', 'Admin\NewsController');
+        Route::resource('/feedback', 'Admin\FeedbackController');
+        Route::resource('/requests', 'Admin\RequestController');
+        Route::resource('/users', 'Admin\UserController');
+    });
 });
 
 
 
-
-
-Route::get('/user/login', 'UserController@login');
-
-//Auth::routes();
+Auth::routes();
