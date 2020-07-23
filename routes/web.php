@@ -24,6 +24,13 @@ Route::get('/news', 'NewsController@news');
 Route::get('/news/{news}', 'NewsController@singleNews')
     ->name('singleNews');
 
+Route::group(['middleware' => 'guest'], function() {
+    Route::get('/facebook/auth', 'SocialAuthController@facebookAuth')
+        ->name('facebook.auth');
+    Route::get('/facebook/callback', 'SocialAuthController@facebookCallback')
+        ->name('facebook.callback');
+});
+
 Route::group(['middleware' => 'auth'], function() {
 
     Route::get('/logout', function() {
@@ -37,6 +44,8 @@ Route::group(['middleware' => 'auth'], function() {
 
     // Admin
     Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
+        Route::get('/parser', 'Admin\ParserController@index')
+            ->name('parser');
         Route::get('/', 'Admin\IndexController@index')
             ->name('admin');
         Route::resource('/categories', 'Admin\CategoryController');

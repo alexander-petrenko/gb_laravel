@@ -20,7 +20,7 @@ class NewsController extends Controller
     {
         $message = session()->get('message') ?? NULL;
 
-        $news = News::query()->paginate(10);
+        $news = News::query()->orderby('created_at', 'desc')->paginate(10);
 
         return view('news.news', [
             'news' => $news,

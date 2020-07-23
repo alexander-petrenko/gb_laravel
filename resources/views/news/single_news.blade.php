@@ -9,11 +9,9 @@
         <h1>{{ $single_news->title }}</h1>
         <p>{{ $single_news->description }}</p>
         <p>Category: 
-            @forelse($single_news->categories as $category)
+            @foreach($single_news->categories as $category)
                 <a href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a>, 
-            @empty
-                <p>No news</p>
-            @endforelse
+            @endforeach
         </p>
         <div>
             <div>Added: {{ $single_news->created_at }}</div>

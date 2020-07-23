@@ -52,11 +52,11 @@
                             <label for="is_admin">Category</label>
                             <div id="is_admin" class="is_admin">
                                 <p>
-                                    <input type="checkbox" name="is_admin" value="false" @if($user->is_admin === false) checked @endif> Simple user
-                                    <input type="checkbox" name="is_admin" value="true" @if($user->is_admin === true) checked @endif> Admin
+                                    <input type="radio" name="is_admin" value="0" @if($user->is_admin === false) checked @endif> Simple user
+                                    <input type="radio" name="is_admin" value="1" @if($user->is_admin === true) checked @endif> Admin
                                 </p>
                             </div>
-                            
+                            @include('validation_error', ['attribute' => 'is_admin'])
                         </div>
                         <button type="submit" class="btn btn-primary">Update</button>
                         <span class="alert alert-success">{{ $message ?? NULL }}</span>
