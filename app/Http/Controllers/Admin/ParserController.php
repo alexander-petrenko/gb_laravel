@@ -24,6 +24,10 @@ class ParserController extends Controller
             }
         }*/
 
+        /* $ev = new NewsParsedEvent($news);
+
+        dd($ev->parsed_news); */
+
         event(new NewsParsedEvent($news));
 
         return redirect()->route('news.index')->with('message', 'Success');

@@ -20,7 +20,7 @@
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Description</label>
-                <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3">{{ old('description') }}</textarea>
+                <textarea class="form-control" name="description" id="editor" id="exampleFormControlTextarea1" rows="3">{{ old('description') }}</textarea>
                 @include('validation_error', ['attribute' => 'description'])
             </div>
             <div class="form-group">
@@ -39,3 +39,17 @@
         </form>
     </div>
 @endsection
+@push('js')
+    <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+    <script>
+        var options = {
+            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+        };
+    </script>
+    <script>
+        CKEDITOR.replace('editor', options)
+    </script>
+@endpush

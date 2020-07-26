@@ -25,7 +25,7 @@ class NewsParsedListener
      * @param  object  $event
      * @return void
      */
-    public function handle($event)
+    public function handle(NewsParsedEvent $event)
     {
         foreach ($event->parsed_news as $news_item) {
             News::create($news_item);

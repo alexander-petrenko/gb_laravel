@@ -25,6 +25,7 @@ class NewsParsedEvent
     {
         $this->parsed_news = $news;
     }
+    
 
     /**
      * Get the channels the event should broadcast on.
