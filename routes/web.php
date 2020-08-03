@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Redis;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,12 +54,14 @@ Route::group(['middleware' => 'auth'], function() {
         Route::resource('/feedback', 'Admin\FeedbackController');
         Route::resource('/requests', 'Admin\RequestController');
         Route::resource('/users', 'Admin\UserController');
+        Route::resource('/sources', 'Admin\SourceController');
     });
 });
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
+
 
 
 

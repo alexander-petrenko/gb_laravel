@@ -16,7 +16,6 @@
                     @csrf
                     <button type="submit" class="btn btn-secondary">Delete</button>
                 </form>
-                <!-- <a href="{{ route('categories.destroy', $category) }}" class="btn btn-secondary">Delete</a> -->
             </div>
         </div>
     </div>

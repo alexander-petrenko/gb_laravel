@@ -6,30 +6,22 @@ use App\Http\Controllers\Controller;
 use App\Services\XmlParserService;
 use Illuminate\Http\Request;
 use App\Events\NewsParsedEvent;
+use App\Jobs\NewsParsing;
 use App\Providers\AppServiceProvider;
 use App\Models\News;
+use App\Models\Source;
 
 
 class ParserController extends Controller
 {
     public function index()
     {
-        $objService = new XmlParserService();
-        $xml = $objService->parse();
-        $news = $xml['news'];
+        $links = Source::all();
 
-        /* foreach ($xml['news'] as $news_item) {
-            if (!News::create($news_item)) {
-                return redirect()->route('news.index')->with('message', 'Fail');
-            }
-        }*/
+        foreach ($links as $link) {
+            NewsParsing::dispatch($link->link);
+        }
 
-        /* $ev = new NewsParsedEvent($news);
-
-        dd($ev->parsed_news); */
-
-        event(new NewsParsedEvent($news));
-
-        return redirect()->route('news.index')->with('message', 'Success');
+        return redirect()->route('news.index')->with('message', 'Parsing complete');
     }
 }
